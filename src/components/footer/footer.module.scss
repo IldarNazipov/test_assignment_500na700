@@ -1,10 +1,15 @@
 .footer {
+  width: 100%;
+  background: $gradient-color;
+}
+
+.wrapper {
   display: flex;
   align-items: center;
   gap: 30px;
-  width: 100%;
   padding: 62px 40px;
-  background: $gradient-color;
+  max-width: 1440px;
+  margin: 0 auto;
 
   @media (width <= 640px) {
     flex-direction: column;
