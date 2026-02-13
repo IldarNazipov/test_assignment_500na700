@@ -1,0 +1,50 @@
+@use 'variables' as *;
+@use 'reset';
+
+@each $weight, $suffix in $inter-weights {
+  @font-face {
+    font-family: $font-name;
+    src: url('#{$font-path}Inter_#{$suffix}.woff2') format('woff2');
+    font-weight: $weight;
+    font-style: normal;
+    font-display: swap;
+  }
+}
+
+:root {
+  font-family: $font-name, sans-serif;
+  font-size: 16px;
+  line-height: 130%;
+  font-weight: 400;
+  color: $white-color;
+  background-color: $black-color;
+  min-width: 320px;
+  max-width: 1440px;
+  min-height: 100vh;
+  margin: 0 auto;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  line-height: 110%;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+h1 {
+  font-size: 40px;
+}
+
+h2 {
+  font-size: 24px;
+}
+
+h3 {
+  font-size: 20px;
+}
+
+h4 {
+  font-size: 16px;
+}

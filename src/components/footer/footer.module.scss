@@ -1,0 +1,22 @@
+.footer {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  width: 100%;
+  padding: 62px 40px;
+  background: $gradient-color;
+
+  @media (width <= 375px) {
+    flex-direction: column;
+    padding: 95px 65px;
+  }
+}
+
+.link {
+  font-size: 24px;
+  font-weight: 600;
+  text-transform: uppercase;
+  line-height: 110%;
+  margin: 0 auto;
+  text-align: center;
+}

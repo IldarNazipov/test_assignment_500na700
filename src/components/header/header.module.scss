@@ -1,0 +1,17 @@
+.header {
+  position: sticky;
+  top: 0;
+  padding: 20px 40px 15px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  background-color: $black-color;
+  border-bottom: 1px solid rgba($color: $white-color, $alpha: 0.3);
+  z-index: 2;
+
+  @media (width <= 375px) {
+    padding: 20px 10px;
+  }
+}

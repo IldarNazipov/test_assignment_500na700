@@ -1,0 +1,10 @@
+.link {
+  display: flex;
+}
+
+.logo {
+  @media (width <= 375px) {
+    width: 44px;
+    height: 53px;
+  }
+}
