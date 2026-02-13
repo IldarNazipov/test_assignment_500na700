@@ -29,6 +29,10 @@
 
 .modalTitle {
   color: $black-color;
+
+  @media (width <= 375px) {
+    font-size: 20px;
+  }
 }
 
 .closeBtn {
