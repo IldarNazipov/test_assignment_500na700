@@ -4,14 +4,14 @@
   gap: 40px;
   padding: 60px 40px;
 
-  @media (width <= 375px) {
+  @media (width <= 640px) {
     padding: 0;
     padding-bottom: 48px;
   }
 }
 
 .mainTitle {
-  @media (width <= 375px) {
+  @media (width <= 640px) {
     font-size: 24px;
     margin-top: 40px;
     margin-left: 10px;
@@ -51,7 +51,6 @@
 
 .newsImage {
   width: 100%;
-  max-width: 440px;
   aspect-ratio: 440 / 300;
   object-fit: cover;
 }
@@ -61,14 +60,14 @@
   flex-direction: column;
   gap: 10px;
 
-  @media (width <= 375px) {
+  @media (width <= 640px) {
     padding: 20px;
     padding-left: 10px;
   }
 }
 
 .newsTitle {
-  @media (width <= 375px) {
+  @media (width <= 640px) {
     font-size: 20px;
   }
 }
@@ -84,7 +83,7 @@
 }
 
 .newsDate {
-  @media (width <= 375px) {
+  @media (width <= 640px) {
     padding-left: 10px;
   }
 }

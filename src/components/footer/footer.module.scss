@@ -6,7 +6,7 @@
   padding: 62px 40px;
   background: $gradient-color;
 
-  @media (width <= 375px) {
+  @media (width <= 640px) {
     flex-direction: column;
     padding: 95px 65px;
   }
