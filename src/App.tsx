@@ -1,5 +1,5 @@
 import { MainContent } from './components/mainContent/MainContent';
-import { BrowserRouter, Route, Routes } from 'react-router';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router';
 import { Layout } from './layout/Layout';
 import { NewsPage } from './pages/newsPage/NewsPage';
 import { NewsLayout } from './layout/NewsLayout';
@@ -15,6 +15,7 @@ const App = () => {
               <Route path='news/:id' element={<NewsPage />} />
             </Route>
           </Route>
+          <Route path='*' element={<Navigate to='/' replace />} />
         </Routes>
       </BrowserRouter>
     </>

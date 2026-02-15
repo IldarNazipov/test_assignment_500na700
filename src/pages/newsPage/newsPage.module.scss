@@ -4,11 +4,19 @@
   gap: 20px;
   flex-wrap: wrap;
   align-items: flex-start;
+  width: 100%;
   max-width: 1440px;
-  margin: 0 auto;
+  flex-grow: 1;
 
   @media (width <= 640px) {
     padding: 40px 0 80px;
+  }
+}
+
+.statusTitle {
+  @media (width <= 640px) {
+    font-size: 24px;
+    padding-inline: 10px;
   }
 }
 
@@ -26,7 +34,6 @@
 .newsText {
   display: flex;
   flex-direction: column;
-  max-width: 500px;
   gap: 40px;
   white-space: pre-line;
 
@@ -40,7 +47,6 @@
   white-space: nowrap;
 
   @media (width <= 640px) {
-    white-space: wrap;
     font-size: 24px;
   }
 }
@@ -71,5 +77,6 @@
 
   @media (width <= 640px) {
     gap: 10px;
+    max-width: 100%;
   }
 }

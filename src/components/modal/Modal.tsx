@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useMask } from '@react-input/mask';
 import { Button } from '../button/Button';
 import styles from './modal.module.scss';
@@ -13,26 +13,58 @@ export const Modal = ({ isOpen, onClose }: ModalProps) => {
     mask: '+7 (___) ___-__-__',
     replacement: { _: /\d/ },
   });
+  const modalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!isOpen) return;
 
-    const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
+    const modal = modalRef.current;
+    if (!modal) return;
+
+    const focusableSelectors =
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
+    const focusableElements =
+      modal.querySelectorAll<HTMLElement>(focusableSelectors);
+
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+
+    firstElement?.focus();
+
+    const handleTab = (e: KeyboardEvent) => {
+      if (e.key !== 'Tab') return;
+
+      if (e.shiftKey) {
+        if (document.activeElement === firstElement) {
+          e.preventDefault();
+          lastElement?.focus();
+        }
+      } else if (document.activeElement === lastElement) {
+        e.preventDefault();
+        firstElement?.focus();
+      }
     };
 
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    document.addEventListener('keydown', handleTab);
     document.addEventListener('keydown', handleEsc);
     document.body.style.overflow = 'hidden';
 
     return () => {
       document.removeEventListener('keydown', handleEsc);
+      document.removeEventListener('keydown', handleTab);
       document.body.style.overflow = '';
     };
   }, [isOpen, onClose]);
 
-  const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+  const handleSubmit: React.SubmitEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    e.stopPropagation();
     const formData = new FormData(e.currentTarget);
     const data = Object.fromEntries(formData.entries());
     console.log(data);
@@ -42,37 +74,44 @@ export const Modal = ({ isOpen, onClose }: ModalProps) => {
   if (!isOpen) return null;
 
   return (
-    <div className={styles.overlay}>
-      <div className={styles.modal}>
-        <h2 className={styles.modalTitle}>Связаться с нами</h2>
-        <button
-          className={styles.closeBtn}
-          type='button'
-          aria-label='Закрыть модальное окно'
-          onClick={onClose}
-        >
-          <svg
-            width='36'
-            height='36'
-            viewBox='0 0 36 36'
-            fill='none'
-            xmlns='http://www.w3.org/2000/svg'
-            aria-hidden
+    <div className={styles.overlay} onClick={onClose}>
+      <div
+        className={styles.modal}
+        ref={modalRef}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className={styles.modalHeader}>
+          <h2 className={styles.modalTitle}>Связаться с нами</h2>
+          <button
+            className={styles.closeBtn}
+            type='button'
+            aria-label='Закрыть модальное окно'
+            onClick={onClose}
           >
-            <path
-              fillRule='evenodd'
-              clipRule='evenodd'
-              d='M26.7 28.9999L6 8.29999L8.3 6L29 26.6999L26.7 28.9999Z'
-              fill='#0F0F17'
-            />
-            <path
-              fillRule='evenodd'
-              clipRule='evenodd'
-              d='M26.7 6.00012L6 26.7L8.3 29L29 8.30011L26.7 6.00012Z'
-              fill='#0F0F17'
-            />
-          </svg>
-        </button>
+            <svg
+              width='36'
+              height='36'
+              viewBox='0 0 36 36'
+              fill='none'
+              xmlns='http://www.w3.org/2000/svg'
+              aria-hidden
+            >
+              <path
+                fillRule='evenodd'
+                clipRule='evenodd'
+                d='M26.7 28.9999L6 8.29999L8.3 6L29 26.6999L26.7 28.9999Z'
+                fill='#0F0F17'
+              />
+              <path
+                fillRule='evenodd'
+                clipRule='evenodd'
+                d='M26.7 6.00012L6 26.7L8.3 29L29 8.30011L26.7 6.00012Z'
+                fill='#0F0F17'
+              />
+            </svg>
+          </button>
+        </div>
+
         <form className={styles.form} onSubmit={handleSubmit}>
           <input
             className={styles.input}

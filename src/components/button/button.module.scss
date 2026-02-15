@@ -7,8 +7,6 @@
     $gradient-color border-box;
 
   &:hover {
-    background: $gradient-color;
-    color: $white-color;
     background:
       linear-gradient(transparent, transparent) padding-box,
       $gradient-color border-box;

@@ -5,7 +5,13 @@ export const Footer = () => {
   return (
     <footer className={styles.footer}>
       <div className={styles.wrapper}>
-        <img src={logo} alt='' />
+        <img
+          className={styles.logo}
+          src={logo}
+          alt=''
+          width={103}
+          height={124}
+        />
         <a
           className={styles.link}
           href='https://500na700.ru/'

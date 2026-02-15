@@ -17,6 +17,13 @@
   }
 }
 
+.logo {
+  @media (width <= 640px) {
+    width: 120px;
+    height: 144px;
+  }
+}
+
 .link {
   font-size: 24px;
   font-weight: 600;
@@ -24,4 +31,14 @@
   line-height: 110%;
   margin: 0 auto;
   text-align: center;
+  color: $white-color;
+  transition: color 0.2s;
+
+  &:hover {
+    color: rgba($color: $white-color, $alpha: 0.5);
+  }
+
+  @media (width <= 640px) {
+    font-size: 20px;
+  }
 }

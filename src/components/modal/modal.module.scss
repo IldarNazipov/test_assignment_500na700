@@ -1,5 +1,5 @@
 .overlay {
-  background-color: rgba($color: $black-color, $alpha: 0.5);
+  background-color: rgba($color: black, $alpha: 0.5);
   position: fixed;
   inset: 0;
   display: flex;
@@ -35,16 +35,16 @@
   }
 }
 
-.closeBtn {
-  position: absolute;
-  top: 35px;
-  right: 40px;
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
+.closeBtn {
   @media (width <= 640px) {
     width: 30px;
     height: 30px;
-    top: 76px;
-    right: 20px;
   }
 }
 
@@ -68,12 +68,12 @@
   gap: 10px;
   cursor: pointer;
   user-select: none;
-}
 
-.checkbox input {
-  position: absolute;
-  opacity: 0;
-  pointer-events: none;
+  input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
 }
 
 .checkmark {
@@ -84,16 +84,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
 
-.checkmark::after {
-  content: '';
-  width: 18px;
-  height: 18px;
-  background: url('../../assets/images/check.svg');
-  background-position: center;
-  background-repeat: no-repeat;
-  transform: scale(0);
+  &::after {
+    content: '';
+    width: 18px;
+    height: 18px;
+    background: url('../../assets/images/check.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    transform: scale(0);
+  }
 }
 
 .checkbox input:checked + .checkmark {
@@ -103,6 +103,10 @@
 
 .checkbox input:checked + .checkmark::after {
   transform: scale(1);
+}
+
+.checkbox input:focus-visible + .checkmark {
+  outline: 2px solid #005fcc;
 }
 
 .labelText {
